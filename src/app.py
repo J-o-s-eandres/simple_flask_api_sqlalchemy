@@ -88,6 +88,8 @@ def delete_task(id):
     
     return task_schema.jsonify(task)
 
-
+@app.route('/')
+def index():
+    return '<h1>Hello</h1>'
 if __name__ == '__main__':
     app.run(debug=True)
