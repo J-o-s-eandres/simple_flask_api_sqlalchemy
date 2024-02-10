@@ -79,5 +79,15 @@ def update_task(id):
     db.session.commit()
     return task_schema.jsonify(task)
 
+@app.route('/tasks/<int:id>', methods=['DELETE'])
+def delete_task(id):
+    task = Task.query.get(id)
+    
+    db.session.delete(task)
+    db.session.commit()
+    
+    return task_schema.jsonify(task)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
