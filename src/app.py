@@ -15,12 +15,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 
 app.config['SQLALCHEMY']=False
 
-
 # permite interactuar con la db 
 db= SQLAlchemy(app)
 ma= Marshmallow(app)
-
-
 
 # Definición d ela tabla
 class Task(db.Model):
@@ -40,10 +37,8 @@ with app.app_context():
 class TaskSchema(ma.Schema):
     class Meta:
         fields = ('id', 'title', 'description')
-
         
 task_schema = TaskSchema()
-
 tasks_schema = TaskSchema(many=True)
 
 
@@ -71,6 +66,18 @@ def get_task(id):
     task = Task.query.get(id)
     return task_schema.jsonify(task)
 
+@app.route('/tasks/<int:id>', methods=['PUT'])
+def update_task(id):
+    task = Task.query.get(id)
+    
+    title = request.json['title']
+    description = request.json['description']
+    
+    task.title = title
+    task.description = description
+    
+    db.session.commit()
+    return task_schema.jsonify(task)
 
 if __name__ == '__main__':
     app.run(debug=True)
