@@ -1,5 +1,3 @@
-Por supuesto, aquí tienes el README.md con la licencia gratuita modificada:
-
 ```markdown
 # Flask API with SQLAlchemy
 
@@ -167,5 +165,3 @@ DELETE /tasks/1
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 ```
-
-Ahora el README.md incluye un enlace a la licencia gratuita MIT. Si necesitas más ajustes, házmelo saber.
