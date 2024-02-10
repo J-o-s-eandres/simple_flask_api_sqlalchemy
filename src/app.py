@@ -66,5 +66,11 @@ def get_tasks():
     result = tasks_schema.dump(all_task)
     return jsonify(result)
 
+@app.route('/tasks/<int:id>', methods=['GET'])
+def get_task(id):
+    task = Task.query.get(id)
+    return task_schema.jsonify(task)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
